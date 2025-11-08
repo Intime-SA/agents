@@ -1,5 +1,5 @@
 // Status que el bot puede asignar como nuevos (excluye "Cargo" por restricción de seguridad)
-export type LeadStatus = "Revisar" | "PidioUsuario" | "PidioCbuAlias" | "Cargo" | "RevisarImagen" | "NoCargo" | "NoAtender" | "Seguimiento" | "Ganado" | "Perdido" | "sin-status"
+export type LeadStatus = "Revisar" | "PidioUsuario" | "PidioCbuAlias" | "Cargo" | "RevisarImagen" | "NoCargo" | "NoAtender" | "Seguimiento" | "Ganado" | "Perdido" | "sin-status" | "CreoUsuario" 
   
 // Status que el bot puede asignar como nuevos (excluye "Cargo" por restricción de seguridad)
 export type BotAssignableStatus = "Revisar" | "PidioUsuario" | "PidioCbuAlias" | "RevisarImagen" | "NoCargo" | "NoAtender" | "sin-status"

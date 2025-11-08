@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { processMessageWithAI } from "@/lib/agents/sales";
 import type { SalesAgentRequest } from "@/types/agent-sales";
-import { AIDecision } from "@/types/kommo";
-import { analyzePaymentReceipt } from "@/lib/agents/payments";
 
 // ENDPOINT PARA PROCESAR UN MENSAJE EN EMBUDO DE VENTAS
 export async function POST(req: NextRequest) {
@@ -18,8 +16,17 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+    
 
    else {
+    console.log("body", body);
+    console.log("body.currentStatus", body.currentStatus);
+    console.log("body.talkId", body.talkId);
+    console.log("body.contactContext", body.contactContext);
+    console.log("body.rules", body.rules);
+    console.log("body.settings", body.settings);
+    console.log("body.statuses", body.statuses);
+    console.log("body.attachment", body.attachment);
       const decision = await processMessageWithAI(
         body.messageText,
         body.currentStatus,
