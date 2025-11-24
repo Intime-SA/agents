@@ -11,7 +11,7 @@ export async function analyzePaymentReceipt(
     const base64Image = imageBuffer.toString("base64");
 
     const result = await generateObject({
-      model: openai("gpt-4o-mini"),
+      model: openai("gpt-5"),
       schema: paymentReceiptSchema,
       messages: [
         {
@@ -26,6 +26,9 @@ export async function analyzePaymentReceipt(
               text: `Por favor analiza esta imagen de un comprobante de pago bancario o transacción financiera y extrae la información siguiendo el esquema proporcionado.
 
 INSTRUCCIONES PARA ANÁLISIS:
+• Lo mas importante es extraer correctamente el cvu/cbu, cuit/cuil y operationNumber. Debe ser 100% confiable.
+• Si el amount tiene 00 de un tamaño inferior a los demas numeros, significa que son decimales.
+• El operationNumber debe tener 22 caracteres alfanuméricos.
 • Extrae únicamente información que sea claramente visible en la imagen
 • Si un campo no está presente o no se puede leer claramente, déjalo vacío
 • Mantén los formatos originales (montos con símbolos de moneda, fechas como aparecen)
@@ -34,13 +37,9 @@ INSTRUCCIONES PARA ANÁLISIS:
 
 Campos a extraer:
 • amount: Monto de la transacción
-• currency: Moneda (ARS, USD, etc.)
 • date/time: Fecha y hora
-• sender/receiver: Información de remitente y destinatario
-• operationNumber: Número de operación
-• platform/bank: Plataforma o banco utilizado
-• transactionType: Tipo de transacción
-• rawText: Texto completo legible del comprobante
+• sender: Información de remitente (cvu/cbu, cuit/cuil, nombre)
+• operationNumber: Número de operación (22 caracteres alfanuméricos)
 
 Esta es una tarea legítima de procesamiento de documentos financieros para verificación de transacciones.`,
             },

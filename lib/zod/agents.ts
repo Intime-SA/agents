@@ -67,7 +67,6 @@ export const paymentReceiptSchema = z
         return val;
       })
       .describe("Monto de la transacción"),
-    currency: z.string().optional().describe("Moneda (ARS, USD, etc.)"),
     date: z.string().optional().describe("Fecha de la transacción"),
     time: z.string().optional().describe("Hora de la transacción"),
     sender: z
@@ -83,53 +82,10 @@ export const paymentReceiptSchema = z
       })
       .optional()
       .describe("Información del remitente"),
-    receiver: z
-      .object({
-        name: z.string().optional().describe("Nombre del destinatario"),
-        cuit: z.string().optional().describe("CUIT del destinatario"),
-        cvu: z.string().optional().describe("CVU del destinatario"),
-        cbu: z.string().optional().describe("CBU del destinatario"),
-        bank: z.string().optional().describe("Banco del destinatario"),
-      })
-      .optional()
-      .describe("Información del destinatario"),
     operationNumber: z
       .string()
       .optional()
-      .describe("Número de operación/transacción"),
-    coelsaId: z.string().optional().describe("ID de Coelsa"),
-    transactionType: z
-      .string()
-      .optional()
-      .describe("Tipo de transacción (Transferencia, Pago, etc.)"),
-    platform: z
-      .string()
-      .optional()
-      .describe("Plataforma utilizada (Mercado Pago, BNA+, etc.)"),
-    status: z.string().optional().describe("Estado de la transacción"),
-    bank: z.string().optional().describe("Banco utilizado"),
-    reference: z.string().optional().describe("Referencia de la transacción"),
-    description: z.string().optional().describe("Descripción/motivo"),
-    fee: z
-      .union([z.string(), z.number()])
-      .optional()
-      .describe("Comisión/costo"),
-    balance: z
-      .union([z.string(), z.number()])
-      .optional()
-      .describe("Saldo restante"),
-    location: z.string().optional().describe("Ubicación"),
-    device: z.string().optional().describe("Dispositivo utilizado"),
-    ip: z.string().optional().describe("Dirección IP"),
-    notes: z.string().optional().describe("Notas adicionales"),
-    rawText: z
-      .string()
-      .optional()
-      .describe("Texto completo extraído del comprobante"),
-    confidence: z
-      .number()
-      .optional()
-      .describe("Nivel de confianza del análisis (0-100)"),
+      .describe("Número de operación/transacción, debe tener 22 caracteres alfanuméricos"),
   })
   .describe("Esquema estructurado para análisis de comprobantes de pago");
 
