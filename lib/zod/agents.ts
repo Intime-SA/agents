@@ -72,13 +72,13 @@ export const paymentReceiptSchema = z
     sender: z
       .object({
         name: z.string().optional().describe("Nombre del remitente"),
-        cuit: z.string().optional().describe("CUIT del remitente"),
+        cuit: z.string().optional().describe("CUIT del remitente, sin -"),
         platform: z
           .string()
           .optional()
           .describe("Plataforma del remitente (Mercado Pago, BNA+, etc.)"),
-        cvu: z.string().optional().describe("CVU del remitente"),
-        cbu: z.string().optional().describe("CBU del remitente"),
+        cvu: z.string().optional().describe("CVU del remitente, 22 digitos numericos"),
+        cbu: z.string().optional().describe("CBU del remitente, 22 digitos numericos"),
       })
       .optional()
       .describe("Información del remitente"),
