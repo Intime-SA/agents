@@ -69,7 +69,7 @@ Determina:
     logAiPromptSent(prompt, systemMessage)
 
     const { object } = await generateObject({
-      model: openai("gpt-5"),
+      model: openai("gpt-4.1-nano"),
       schema: salesDecisionSchema,
       system: systemMessage,
       prompt: prompt,
