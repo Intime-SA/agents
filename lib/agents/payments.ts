@@ -1,4 +1,9 @@
-import { openai } from "@ai-sdk/openai";
+import { createOpenAI } from "@ai-sdk/openai";
+
+// Crear instancia de OpenAI con modo de compatibilidad estricto
+const openai = createOpenAI({
+  compatibility: 'strict',
+});
 import { paymentReceiptSchema } from "../zod/agents";
 import { generateObject } from "ai";
 import { PaymentAgentResponse } from "@/types/agent-payments";
