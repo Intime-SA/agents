@@ -11,7 +11,7 @@ export async function analyzePaymentReceipt(
     const base64Image = imageBuffer.toString("base64");
 
     const result = await generateObject({
-      model: openai("gpt-4o"),
+      model: openai("gpt-5"),
       schema: paymentReceiptSchema,
       messages: [
         {
