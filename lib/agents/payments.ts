@@ -1,9 +1,4 @@
-import { createOpenAI } from "@ai-sdk/openai";
-
-// Crear instancia de OpenAI con modo de compatibilidad estricto
-const openai = createOpenAI({
-  compatibility: 'strict',
-});
+import { openai } from "@ai-sdk/openai";
 import { paymentReceiptSchema } from "../zod/agents";
 import { generateObject } from "ai";
 import { PaymentAgentResponse } from "@/types/agent-payments";
@@ -16,7 +11,7 @@ export async function analyzePaymentReceipt(
     const base64Image = imageBuffer.toString("base64");
 
     const result = await generateObject({
-      model: openai("gpt-5"),
+      model: openai("gpt-4o"),
       schema: paymentReceiptSchema,
       messages: [
         {

@@ -1,10 +1,5 @@
 import { generateObject } from "ai"
-import { createOpenAI } from "@ai-sdk/openai"
-
-// Crear instancia de OpenAI con modo de compatibilidad estricto
-const openai = createOpenAI({
-  compatibility: 'strict',
-})
+import { openai } from "@ai-sdk/openai"
 import type { LeadStatus, BotAssignableStatus, AIDecision, ContactContext, SettingsDocument, StatusDocument } from "@/types/kommo.ts"
 import { logAiProcessingError, logAiPromptSent, logAiResponseReceived } from "@/lib/logger/logger"
 import { salesDecisionSchema } from "../zod/agents"
@@ -74,7 +69,7 @@ Determina:
     logAiPromptSent(prompt, systemMessage)
 
     const { object } = await generateObject({
-      model: openai("gpt-4.1-nano"),
+      model: openai("gpt-4o-mini"),
       schema: salesDecisionSchema,
       system: systemMessage,
       prompt: prompt,
