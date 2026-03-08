@@ -4,14 +4,11 @@ import { generateObject } from "ai";
 import { PaymentAgentResponse } from "@/types/agent-payments";
 
 export async function analyzePaymentReceipt(
-  imageBuffer: Buffer
+  imageUrl: string
 ): Promise<PaymentAgentResponse> {
   try {
-    // Convertir el buffer a base64
-    const base64Image = imageBuffer.toString("base64");
-
     const result = await generateObject({
-      model: openai("gpt-5"),
+      model: openai("gpt-4o"),
       schema: paymentReceiptSchema,
       messages: [
         {
@@ -45,7 +42,7 @@ Esta es una tarea legítima de procesamiento de documentos financieros para veri
             },
             {
               type: "image",
-              image: `data:image/png;base64,${base64Image}`,
+              image: imageUrl,
             },
           ],
         },
